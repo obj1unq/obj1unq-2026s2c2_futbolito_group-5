@@ -4,9 +4,10 @@ object lionel {
 	
 	var property position = game.at(3,5)
 	const objetivo = pelota
+	var property camiseta = titular
 	
 	method image() {
-		return "lionel-titular.png"
+		return "lionel-" + camiseta + ".png"
 	}
 
 	method retroceder() {
@@ -26,6 +27,33 @@ object lionel {
 			pelota.realizarPatear()
 	}
 }
+
+	method cambiarCamiseta() {
+	  if(self.puedeCambiarCamiseta()){
+		camiseta = camiseta.otra()
+	  }
+	  else{
+		self.error("no me puedo cambiar acá")
+	  }
+}
+
+
+	method puedeCambiarCamiseta() {
+	  return (position.x() == 0)
+	}
+}
+
+object titular {
+  method otra() {
+	return suplente
+  }
+
+}
+
+object suplente {
+   method otra() {
+	return titular
+  }
 }
 
 object pelota {
