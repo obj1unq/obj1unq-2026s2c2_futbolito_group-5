@@ -21,6 +21,15 @@ object lionel {
 		position = objetivo.position()
 	}
 	
+	method irAPelota(pelota){
+		position = pelota.position()
+	}
+	
+	method taquito(){
+		if(position == pelota.position()){
+			pelota.realizarTaquito()
+		}
+	}
 	method patear() {
 		if (position == pelota.position()) {
 			pelota.realizarPatear()
@@ -31,6 +40,10 @@ object lionel {
 object pelota {
 	const property image="pelota.png"
 	var property position = game.at(5,5)	
+	
+	method realizarTaquito(){
+		position = game.at(0.max(position.x() - 2), position.y())
+	}
 
 	method realizarPatear() {
 		position = game.at((game.width()-1).min(position.x() + 3), position.y())
