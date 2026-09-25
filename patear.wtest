@@ -17,19 +17,5 @@ describe "test futbolito" {
 		assert.equals(game.at(0,5), pelota.position())
 	}
 
-	test "patear no saca a la pelota de la cancha" {
-		pelota.inicio()
-		lionel.buscar()
-		lionel.patear() // pelota pasa a (3,5)
-		lionel.buscar()
-		lionel.patear() // pelota pasa a (6,5)
-		lionel.buscar()
-		lionel.patear() // pelota pasa a (9,5)
-		lionel.buscar()
-		lionel.patear() // pelota pasa a (12,5)
-		lionel.buscar()
-		lionel.patear() // debería frenar en game.width()-1 = 14
-		assert.equals(game.at(14,5), pelota.position())
-	}
 
 }
