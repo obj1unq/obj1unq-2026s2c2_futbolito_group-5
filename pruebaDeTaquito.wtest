@@ -1,0 +1,32 @@
+import wollok.game.*
+import objetos.*
+
+describe "Taquito de Lionel" {
+
+  method initialize() {
+    game.cellSize(40)
+    game.width(15)
+    game.height(10)
+    lionel.position(game.at(3, 5))
+    pelota.position(game.at(3, 5))
+  }
+
+  test "si Lionel y la pelota están en la misma posición, la pelota retrocede 2 posiciones" {
+    lionel.taquito()
+    assert.equals(game.at(1, 5), pelota.position())
+  }
+
+  test "si la pelota no puede retroceder 2 completas, queda en x=0" {
+    lionel.position(game.at(1, 5))
+    pelota.position(game.at(1, 5))
+    lionel.taquito()
+    assert.equals(game.at(0, 5), pelota.position())
+  }
+
+  test "si Lionel no está en la posición de la pelota, taquito lanza una excepción" {
+    lionel.position(game.at(3, 5))
+    pelota.position(game.at(7, 5))
+    assert.throwsException({ lionel.taquito() })
+  }
+
+}
