@@ -22,8 +22,12 @@ object lionel {
 	}
 	
 	method taquito(){
-		if(position == pelota.position()){
-			pelota.realizarTaquito()
+		self.validarPelotaSobreLeonel()
+		pelota.realizarTaquito()
+	}
+	method validarPelotaSobreLeonel(){
+		if(position != pelota.position()){
+			self.error("Leonel necesita la pelota para hacer un Taquito")
 		}
 	}
 }
