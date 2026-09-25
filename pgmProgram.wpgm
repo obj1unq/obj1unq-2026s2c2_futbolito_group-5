@@ -17,6 +17,8 @@ program futbolito{
 	
 	keyboard.t().onPressDo({lionel.taquito()})
 
+	keyboard.c().onPressDo({lionel.cambiarCamiseta()})
+
 	keyboard.p().onPressDo({lionel.patear()})
 	game.start()
 
