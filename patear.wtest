@@ -1,0 +1,35 @@
+import wollok.game.*
+import objetos.*
+
+describe "test futbolito" {
+
+	test "patear desplaza la pelota 3 posiciones a la derecha" {
+		pelota.inicio() // pelota en (0,5)
+		lionel.buscar() // lionel se para donde está la pelota
+		lionel.patear()
+		assert.equals(game.at(3,5), pelota.position())
+	}
+
+	test "patear no hace nada si lionel no está sobre la pelota" {
+		pelota.inicio() // pelota en (0,5)
+		// lionel queda en su posición inicial (3,5), no coincide
+		lionel.patear()
+		assert.equals(game.at(0,5), pelota.position())
+	}
+
+	test "patear no saca a la pelota de la cancha" {
+		pelota.inicio()
+		lionel.buscar()
+		lionel.patear() // pelota pasa a (3,5)
+		lionel.buscar()
+		lionel.patear() // pelota pasa a (6,5)
+		lionel.buscar()
+		lionel.patear() // pelota pasa a (9,5)
+		lionel.buscar()
+		lionel.patear() // pelota pasa a (12,5)
+		lionel.buscar()
+		lionel.patear() // debería frenar en game.width()-1 = 14
+		assert.equals(game.at(14,5), pelota.position())
+	}
+
+}
